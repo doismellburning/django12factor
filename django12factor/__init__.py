@@ -59,3 +59,7 @@ def factorise():
     }
 
     settings['DEBUG'] = getenv_bool('DEBUG')
+    if 'TEMPLATE_DEBUG' in os.environ:
+        settings['TEMPLATE_DEBUG'] = getenv_bool('TEMPLATE_DEBUG')
+    else:
+        settings['TEMPLATE_DEBUG'] = settings['DEBUG']
