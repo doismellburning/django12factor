@@ -4,6 +4,21 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+_FALSE_STRINGS = [
+    "no",
+    "false",
+    "off",
+]
+
+def getenv_bool(setting_name):
+    if setting_name not in os.environ:
+        return False
+
+    var = os.environ[setting_name]
+
+    return not (var.lower() in _FALSE_STRINGS)
+
+
 def factorise():
     """
     Returns a dict of settings suitable for Django, acquired from the environment in a 12factor-y way - see http://12factor.net/config
@@ -42,3 +57,5 @@ def factorise():
     settings['DATABASES'] = {
         'default': dj_database_url.config(default='sqlite://:memory:') # Note this'll currently break due to https://github.com/kennethreitz/dj-database-url/pull/21
     }
+
+    settings['DEBUG'] = getenv_bool('DEBUG')
