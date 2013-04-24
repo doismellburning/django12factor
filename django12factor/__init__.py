@@ -1,3 +1,4 @@
+import dj_database_url
 import uuid
 import os
 import logging
