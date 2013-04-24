@@ -1,3 +1,4 @@
+import django_cache_url
 import dj_database_url
 import uuid
 import os
@@ -64,5 +65,9 @@ def factorise():
         settings['TEMPLATE_DEBUG'] = getenv_bool('TEMPLATE_DEBUG')
     else:
         settings['TEMPLATE_DEBUG'] = settings['DEBUG']
+
+    settings['CACHES'] = {
+        'default': django_cache_url.config(default='locmem://')
+    }
 
     return settings
