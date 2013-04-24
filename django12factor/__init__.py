@@ -1,5 +1,6 @@
 import django_cache_url
 import dj_database_url
+import dj_email_url
 import uuid
 import os
 import logging
@@ -69,5 +70,7 @@ def factorise():
     settings['CACHES'] = {
         'default': django_cache_url.config(default='locmem://')
     }
+
+    settings.update(dj_email_url.config(default='dummy://'))
 
     return settings
