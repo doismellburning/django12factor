@@ -38,7 +38,7 @@ def factorise():
         settings['SECRET_KEY'] = os.environ['SECRET_KEY']
     else:
         logger.warn('No SECRET_KEY provided, using UUID')
-        settings['SECRET_KEY'] = uuid.uuid4()
+        settings['SECRET_KEY'] = str(uuid.uuid4())
 
     settings['LOGGING'] = {
         'version': 1,
