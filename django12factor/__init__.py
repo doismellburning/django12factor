@@ -1,7 +1,6 @@
 import django_cache_url
 import dj_database_url
 import dj_email_url
-import uuid
 import os
 import logging
 
@@ -33,12 +32,8 @@ def factorise():
 
     settings = {}
 
-    # Slightly opinionated...
     if 'SECRET_KEY' in os.environ:
         settings['SECRET_KEY'] = os.environ['SECRET_KEY']
-    else:
-        logger.warn('No SECRET_KEY provided, using UUID')
-        settings['SECRET_KEY'] = str(uuid.uuid4())
 
     settings['LOGGING'] = {
         'version': 1,
