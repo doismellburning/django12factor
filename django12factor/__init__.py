@@ -73,4 +73,6 @@ def factorise():
 
     settings.update(dj_email_url.config(default='dummy://'))
 
+    settings['ALLOWED_HOSTS'] = os.getenv('ALLOWED_HOSTS', '').split(',')
+
     return settings
