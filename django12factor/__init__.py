@@ -1,9 +1,9 @@
 import django_cache_url
 import dj_database_url
 import dj_email_url
-import uuid
 import os
 import logging
+import sys
 
 logger = logging.getLogger(__name__)
 
@@ -33,13 +33,6 @@ def factorise():
 
     settings = {}
 
-    # Slightly opinionated...
-    if 'SECRET_KEY' in os.environ:
-        settings['SECRET_KEY'] = os.environ['SECRET_KEY']
-    else:
-        logger.warn('No SECRET_KEY provided, using UUID')
-        settings['SECRET_KEY'] = str(uuid.uuid4())
-
     settings['LOGGING'] = {
         'version': 1,
         'disable_existing_loggers': False,
@@ -66,6 +59,12 @@ def factorise():
         settings['TEMPLATE_DEBUG'] = getenv_bool('TEMPLATE_DEBUG')
     else:
         settings['TEMPLATE_DEBUG'] = settings['DEBUG']
+
+    # Slightly opinionated...
+    if 'SECRET_KEY' in os.environ:
+        settings['SECRET_KEY'] = os.environ['SECRET_KEY']
+    elif not settings['DEBUG']:
+        sys.exit('DEBUG is False but no SECRET_KEY is set in the environment - either it has been hardcoded (bad) or not set at all (bad) - exit()ing for safety reasons')
 
     settings['CACHES'] = {
         'default': django_cache_url.config(default='locmem://')
