@@ -51,7 +51,7 @@ def factorise():
     }
 
     settings['DATABASES'] = {
-        'default': dj_database_url.config(default='sqlite://:memory:') # Note this'll currently break due to https://github.com/kennethreitz/dj-database-url/pull/21
+        'default': dj_database_url.config(default='sqlite://:memory:')
     }
 
     settings['DEBUG'] = getenv_bool('DEBUG')
