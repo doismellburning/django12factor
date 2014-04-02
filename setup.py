@@ -32,4 +32,9 @@ setup(
     keywords='django 12factor configuration',
 
     install_requires=requirements,
+
+    classifiers=(
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+    ),
 )
