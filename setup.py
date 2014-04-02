@@ -20,6 +20,7 @@ setup(
     version=__version__,
     packages=find_packages(exclude=['test*']),
     include_package_data=True,
+    zip_safe=True,
 
     # metadata for upload to PyPI
     author='Kristian Glass',
