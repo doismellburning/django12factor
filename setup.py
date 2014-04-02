@@ -6,8 +6,6 @@ __version__ = '0.1'
 
 HERE = os.path.dirname(__file__)
 
-requirements = open(os.path.join(HERE, 'requirements.txt')).readlines()
-
 try:
     long_description = open(os.path.join(HERE, 'README.md')).read()
 except:
@@ -29,7 +27,11 @@ setup(
     license='MIT',
     keywords='django 12factor configuration',
 
-    install_requires=requirements,
+    install_requires=(
+		"dj-database-url==0.2.2",
+		"dj-email-url==0.0.1",
+		"django-cache-url==0.5.0",
+    ),
 
     classifiers=(
         "Intended Audience :: Developers",
