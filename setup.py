@@ -33,6 +33,11 @@ setup(
 		"django-cache-url==0.5.0",
     ),
 
+    tests_require=(
+        "nose",
+    ),
+    test_suite='nose.collector',
+
     classifiers=(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
@@ -41,4 +46,5 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.3",
     ),
+
 )
