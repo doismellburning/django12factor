@@ -7,8 +7,6 @@ __version__ = '0.1'
 HERE = os.path.dirname(__file__)
 
 requirements = open(os.path.join(HERE, 'requirements.txt')).readlines()
-if sys.version_info[:2] < (2, 7):
-    requirements.append('argparse')
 
 try:
     long_description = open(os.path.join(HERE, 'README.md')).read()
