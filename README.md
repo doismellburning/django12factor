@@ -12,26 +12,50 @@
 
 Add the following to the bottom of your `settings.py`:
 
-    from django12factor import factorise
-    globals().update(factorise())
+    import django12factor
+    d12f = django12factor.factorise()
 
-### But I don't want everything django12factor provides!
+`factorise()` returns a `dict` of settings, so you can now use and assign them as you wish, e.g.
 
-`factorise()` returns a `dict` of settings, so controlling what elements of `django12factor` you use is easy:
-
-### Whitelisting
-
-    from django12factor import factorise
-    d12f = factorise()
     DEBUG = d12f['DEBUG']
     LOGGING = d12f['LOGGING']
-    # ...
 
-### Blacklisting
+If you don't like that repetition, you can (ab)use `globals()` like so:
 
-    from django12factor import factorise
-    d12f = factorise()
-    del d12f['SECRET_KEY']
-    # ...
-    globals().update(d12f)
+    import django12factor
+    d12f = django12factor.factorise()
 
+    def f(setting):
+        globals()[setting] = d12f[setting]
+
+    f('DEBUG')
+    f('LOGGING')
+
+### Give me everything!
+
+If you say so...
+
+    import django12factor
+    globals().update(django12factor.factorise())
+
+## Settings
+
+The following settings are currently supported:
+
+### `DEBUG`
+
+### `TEMPLATE_DEBUG`
+
+### `CACHES`
+
+Uses [`django-cache-url`](https://github.com/ghickman/django-cache-url)
+
+### `LOGGING`
+
+### `DATABASES`
+
+Uses [`dj-database-url`](https://github.com/kennethreitz/dj-database-url)
+
+### `ALLOWED_HOSTS`
+
+### `SECRET_KEY`
