@@ -50,9 +50,12 @@ def factorise():
         },
     }
 
-    settings['DATABASES'] = {
-        'default': dj_database_url.config(default='sqlite://:memory:')
-    }
+    if getenv_bool('DATABASES'):
+        settings['DATABASES'] = dj_database_url.parse(os.environ['DATABASES'])
+    else:
+        settings['DATABASES'] = {
+            'default': dj_database_url.config(default='sqlite://:memory:')
+        }
 
     settings['DEBUG'] = getenv_bool('DEBUG')
     if 'TEMPLATE_DEBUG' in os.environ:
