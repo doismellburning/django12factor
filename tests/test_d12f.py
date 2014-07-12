@@ -33,4 +33,3 @@ class Env(object):
         os.environ = self.oldenviron
 
 env = Env
-
