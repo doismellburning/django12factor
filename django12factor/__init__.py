@@ -51,7 +51,9 @@ def factorise():
     }
 
     if getenv_bool('DATABASES'):
-        settings['DATABASES'] = dj_database_url.parse(os.environ['DATABASES'])
+        settings['DATABASES'] = {
+            'default': dj_database_url.parse(os.environ['DATABASES'])
+        }
     else:
         settings['DATABASES'] = {
             'default': dj_database_url.config(default='sqlite://:memory:')
