@@ -18,6 +18,9 @@ class TestD12F(unittest.TestCase):
         with env(DEBUG="true"):
             self.assertIn("sqlite", d12f()['DATABASES']['default']['ENGINE'])
 
+        with env(DEBUG="true", DATABASE_URL="sqlite://:memory:"):
+            self.assertIn("sqlite", d12f()['DATABASES']['default']['ENGINE'])
+
         with env(DEBUG="true", DATABASE_URL="postgres://username:password@host:1234/dbname"):
             db = d12f()['DATABASES']['default']
             self.assertIn("postgres", db['ENGINE'])
