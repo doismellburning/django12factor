@@ -81,7 +81,8 @@ Uses
 ~~~~~~~~~~~~~
 
 Uses
-```dj-database-url`` <https://github.com/kennethreitz/dj-database-url>`__
+```dj-database-url`` <https://github.com/kennethreitz/dj-database-url>`__ -
+parses ``DATABASE_URL`` if it exists, otherwise falls back to in-memory sqlite.
 
 ``ALLOWED_HOSTS``
 ~~~~~~~~~~~~~~~~~
