@@ -51,9 +51,10 @@ You can also add non-Django settings this way, e.g. keys to APIs:
 
 ::
 
-    d12f = django12factor.factorise(['MAILCHIMP_API_KEY'])
+    d12f = django12factor.factorise(['MAILCHIMP_API_KEY', 'GOOGLE_ANALYTICS_KEY'])
 
     MAILCHIMP_API_KEY = d12f['MAILCHIMP_API_KEY']
+    GOOGLE_ANALYTICS_KEY = d12f['GOOGLE_ANALYTICS_KEY']    
 
 Give me everything!
 ~~~~~~~~~~~~~~~~~~~
