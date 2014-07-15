@@ -26,6 +26,11 @@ class TestD12F(unittest.TestCase):
             self.assertIn("postgres", db['ENGINE'])
             self.assertEquals("dbname", db['NAME'])
 
+    def test_custom_key(self):
+        with env(DEBUG="true", CUSTOM_KEY="banana"):
+            settings = d12f(['CUSTOM_KEY'])
+            self.assertIn("banana", settings['CUSTOM_KEY'])
+
 
 class Env(object):
     def __init__(self, **kwargs):

@@ -22,7 +22,7 @@ def getenv_bool(setting_name):
     return not (var.lower() in _FALSE_STRINGS)
 
 
-def factorise():
+def factorise(custom_settings=None):
     """
     Returns a dict of settings suitable for Django, acquired from the environment in a 12factor-y way - see http://12factor.net/config
 
@@ -73,5 +73,13 @@ def factorise():
     settings.update(dj_email_url.config(default='dummy://'))
 
     settings['ALLOWED_HOSTS'] = os.getenv('ALLOWED_HOSTS', '').split(',')
+
+    # For keys to different apis, etc.
+    if custom_settings is None:
+        custom_settings = []
+        
+    for cs in custom_settings:
+        if cs in os.environ:
+            settings[cs] = os.environ[cs]
 
     return settings
