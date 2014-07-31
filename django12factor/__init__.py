@@ -79,7 +79,6 @@ def factorise(custom_settings=None):
         custom_settings = []
 
     for cs in custom_settings:
-        if cs in os.environ:
-            settings[cs] = os.environ[cs]
+        settings[cs] = os.getenv(cs)
 
     return settings
