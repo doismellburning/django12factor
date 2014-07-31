@@ -77,7 +77,7 @@ def factorise(custom_settings=None):
     # For keys to different apis, etc.
     if custom_settings is None:
         custom_settings = []
-        
+
     for cs in custom_settings:
         if cs in os.environ:
             settings[cs] = os.environ[cs]
