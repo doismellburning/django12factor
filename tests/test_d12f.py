@@ -26,6 +26,18 @@ class TestD12F(unittest.TestCase):
             self.assertIn("postgres", db['ENGINE'])
             self.assertEquals("dbname", db['NAME'])
 
+    def test_custom_key(self):
+        with env(DEBUG="true", CUSTOM_KEY="banana"):
+            settings = d12f(['CUSTOM_KEY'])
+            self.assertIn("banana", settings['CUSTOM_KEY'])
+
+    def test_missing_custom_keys(self):
+        present = 1
+        with env(DEBUG="true", PRESENT=present):
+            settings = d12f(['PRESENT', 'MISSING'])
+            self.assertEquals(present, settings['PRESENT'])
+            self.assertIsNone(settings['MISSING'])
+
 
 class Env(object):
     def __init__(self, **kwargs):

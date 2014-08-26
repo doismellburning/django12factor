@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* Nothing!
+* Grab arbitrary environment variables as settings with the `custom_settings` parameter
 
 ## 1.0
 
