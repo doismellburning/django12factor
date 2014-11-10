@@ -4,6 +4,10 @@
 
 * Nothing!
 
+## 1.2
+
+* Update dependencies
+
 ## 1.1
 
 * Grab arbitrary environment variables as settings with the `custom_settings` parameter

@@ -2,7 +2,7 @@ import os
 import sys
 from setuptools import setup, find_packages
 
-__version__ = '1.1'
+__version__ = '1.2'
 
 HERE = os.path.dirname(__file__)
 
@@ -28,9 +28,9 @@ setup(
     keywords='django 12factor configuration',
 
     install_requires=(
-		"dj-database-url==0.2.2",
-		"dj-email-url==0.0.1",
-		"django-cache-url==0.5.0",
+		"dj-database-url==0.3.0",
+		"dj-email-url==0.0.2",
+		"django-cache-url==0.8.0",
     ),
 
     tests_require=(
