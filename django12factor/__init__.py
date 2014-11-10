@@ -25,7 +25,9 @@ def getenv_bool(setting_name):
 
 def factorise(custom_settings=None):
     """
-    Returns a dict of settings suitable for Django, acquired from the environment in a 12factor-y way - see http://12factor.net/config
+    Return a dict of settings for Django, acquired from the environment.
+
+    This is done in a 12factor-y way - see http://12factor.net/config
 
     Caller probably wants to, in `settings.py`:
 
@@ -65,7 +67,9 @@ def factorise(custom_settings=None):
     if 'SECRET_KEY' in os.environ:
         settings['SECRET_KEY'] = os.environ['SECRET_KEY']
     elif not settings['DEBUG']:
-        sys.exit('DEBUG is False but no SECRET_KEY is set in the environment - either it has been hardcoded (bad) or not set at all (bad) - exit()ing for safety reasons')
+        sys.exit("""DEBUG is False but no SECRET_KEY is set in the environment -
+either it has been hardcoded (bad) or not set at all (bad) - exit()ing for
+safety reasons""")
 
     settings['CACHES'] = {
         'default': django_cache_url.config(default='locmem://')
