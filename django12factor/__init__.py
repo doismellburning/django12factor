@@ -13,6 +13,7 @@ _FALSE_STRINGS = [
     "off",
 ]
 
+
 def getenv_bool(setting_name):
     if setting_name not in os.environ:
         return False
