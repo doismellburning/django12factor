@@ -1,6 +1,9 @@
 django-12factor
 ===============
 
+.. image:: https://travis-ci.org/doismellburning/django12factor.svg?branch=master
+       :target: https://travis-ci.org/doismellburning/django12factor
+
 What is it?
 -----------
 
