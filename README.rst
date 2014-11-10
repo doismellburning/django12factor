@@ -4,6 +4,10 @@ django-12factor
 .. image:: https://travis-ci.org/doismellburning/django12factor.svg?branch=master
        :target: https://travis-ci.org/doismellburning/django12factor
 
+.. image:: https://landscape.io/github/doismellburning/django12factor/feature/badges/landscape.png
+      :target: https://landscape.io/github/doismellburning/django12factor/feature/badges
+   :alt: Code Health
+
 What is it?
 -----------
 
