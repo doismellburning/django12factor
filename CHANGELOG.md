@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* Nothing!
+* Python 3.2 and 3.4 support
 
 ## 1.2
 
