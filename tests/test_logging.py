@@ -23,12 +23,3 @@ class TestLogging(unittest.TestCase):
         with debug_env:
             logging.config.dictConfig(django12factor.factorise()['LOGGING'])
             self.assertTrue(has_handler(logging.root, "stdout"))
-
-    def test_handler_propagation(self):
-        """
-        Assert arbitrary loggers have inherited expected config.
-        """
-
-        with debug_env:
-            logging.config.dictConfig(django12factor.factorise()['LOGGING'])
-            self.assertTrue(has_handler(logging.getLogger('arbitrary.logger.name'), "stdout"))
