@@ -1,9 +1,11 @@
+from __future__ import absolute_import
+
 import django12factor
 import logging
 import logging.config
 import unittest
 
-from env import env
+from .env import env
 
 debug_env = env(DEBUG="1", SECRET_KEY="secret")
 

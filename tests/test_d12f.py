@@ -1,8 +1,10 @@
+from __future__ import absolute_import
+
 import django12factor
 import os
 import unittest
 
-from env import env
+from .env import env
 
 d12f = django12factor.factorise
 
