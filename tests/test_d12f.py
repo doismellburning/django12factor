@@ -2,6 +2,8 @@ import django12factor
 import os
 import unittest
 
+from env import env
+
 d12f = django12factor.factorise
 
 class TestD12F(unittest.TestCase):
@@ -39,15 +41,3 @@ class TestD12F(unittest.TestCase):
             self.assertIsNone(settings['MISSING'])
 
 
-class Env(object):
-    def __init__(self, **kwargs):
-        self.environ = kwargs
-
-    def __enter__(self):
-        self.oldenviron = os.environ
-        os.environ = self.environ
-
-    def __exit__(self, type, value, traceback):
-        os.environ = self.oldenviron
-
-env = Env
