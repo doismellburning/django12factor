@@ -45,11 +45,8 @@ def factorise(custom_settings=None):
                 'class': 'logging.StreamHandler',
             }
         },
-        'loggers': {
-            'root': {
-                'handlers': ['stdout'],
-                'propagate': True,
-            },
+        'root': {
+            'handlers': ['stdout'],
         },
     }
 
