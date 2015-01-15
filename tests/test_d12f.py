@@ -3,13 +3,12 @@ from __future__ import absolute_import
 import django12factor
 import unittest
 
-from .env import env
+from .env import (
+    debugenv,
+    env,
+)
 
 d12f = django12factor.factorise
-
-
-def debugenv(**kwargs):
-    return env(DEBUG="true", **kwargs)
 
 
 class TestD12F(unittest.TestCase):

@@ -12,4 +12,9 @@ class Env(object):
     def __exit__(self, type, value, traceback):
         os.environ = self.oldenviron
 
+
+def debugenv(**kwargs):
+    return env(DEBUG="true", **kwargs)
+
+
 env = Env
