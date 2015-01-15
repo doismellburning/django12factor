@@ -76,6 +76,11 @@ If you say so...
     import django12factor
     globals().update(django12factor.factorise())
 
+Utilities
+---------
+
+``django12factor.getenv_bool`` is a utility function that takes the name of an environment variable, and returns ``True`` _unless_ it is set to either a "falsey" string (e.g. ``"no"``) or not set.
+
 Settings
 --------
 
