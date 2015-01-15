@@ -30,7 +30,7 @@ Usage
 
 Add the following to the bottom of your ``settings.py``:
 
-::
+.. code-block:: python
 
     import django12factor
     d12f = django12factor.factorise()
@@ -38,7 +38,7 @@ Add the following to the bottom of your ``settings.py``:
 ``factorise()`` returns a ``dict`` of settings, so you can now use and
 assign them as you wish, e.g.
 
-::
+.. code-block:: python
 
     DEBUG = d12f['DEBUG']
     LOGGING = d12f['LOGGING']
@@ -46,7 +46,7 @@ assign them as you wish, e.g.
 If you don't like that repetition, you can (ab)use ``globals()`` like
 so:
 
-::
+.. code-block:: python
 
     import django12factor
     d12f = django12factor.factorise()
@@ -59,7 +59,7 @@ so:
 
 You can also add non-Django settings this way, e.g. keys to APIs:
 
-::
+.. code-block:: python
 
     custom_settings = (
         "GOOGLE_ANALYTICS_KEY",
@@ -77,7 +77,7 @@ Give me everything!
 
 If you say so...
 
-::
+.. code-block:: python
 
     import django12factor
     globals().update(django12factor.factorise())
