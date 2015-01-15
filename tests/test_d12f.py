@@ -29,6 +29,16 @@ class TestD12F(unittest.TestCase):
         with env(SECRET_KEY="x"):
             self.assertFalse(d12f()['DEBUG'])
 
+    def test_template_debug(self):
+        with debugenv():
+            # Unless explicitly set, TEMPLATE_DEBUG = DEBUG
+            self.assertTrue(d12f()['TEMPLATE_DEBUG'])
+
+        with debugenv(TEMPLATE_DEBUG="false"):
+            s = d12f()
+            self.assertFalse(s['TEMPLATE_DEBUG'])
+            self.assertTrue(s['DEBUG'])
+
     def test_db(self):
         with debugenv():
             self.assertIn("sqlite", d12f()['DATABASES']['default']['ENGINE'])
