@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Python 3.2 and 3.4 support
+* Improved test suite - 100% coverage + flake8
 
 ## 1.2
 
