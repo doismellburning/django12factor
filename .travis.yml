@@ -1,6 +1,7 @@
 language: python
 sudo: false
 env:
+    - TOXENV=flake8
     - TOXENV=py27
     - TOXENV=py32
     - TOXENV=py33

@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 
 import django12factor
-import os
 import unittest
 
 from .env import env
@@ -30,7 +29,10 @@ class TestD12F(unittest.TestCase):
         with debugenv(DATABASE_URL="sqlite://:memory:"):
             self.assertIn("sqlite", d12f()['DATABASES']['default']['ENGINE'])
 
-        with debugenv(DATABASE_URL="postgres://username:password@host:1234/dbname"):
+        postgenv = debugenv(
+            DATABASE_URL="postgres://username:password@host:1234/dbname",
+        )
+        with postgenv:
             db = d12f()['DATABASES']['default']
             self.assertIn("postgres", db['ENGINE'])
             self.assertEquals("dbname", db['NAME'])
@@ -46,5 +48,3 @@ class TestD12F(unittest.TestCase):
             settings = d12f(['PRESENT', 'MISSING'])
             self.assertEquals(present, settings['PRESENT'])
             self.assertIsNone(settings['MISSING'])
-
-
