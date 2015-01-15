@@ -1,0 +1,7 @@
+[run]
+branch = true
+source = django12factor
+
+[report]
+fail_under = 90
+show_missing = true
