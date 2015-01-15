@@ -70,6 +70,8 @@ You can also add non-Django settings this way, e.g. keys to APIs:
     MAILCHIMP_API_KEY = d12f['MAILCHIMP_API_KEY']
     GOOGLE_ANALYTICS_KEY = d12f['GOOGLE_ANALYTICS_KEY']
 
+In the event of a ``custom_setting`` not being set in the environment, it will default to ``None``.
+
 Give me everything!
 ~~~~~~~~~~~~~~~~~~~
 
