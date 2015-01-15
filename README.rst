@@ -89,17 +89,23 @@ The following settings are currently supported:
 ``DEBUG``
 ~~~~~~~~~
 
+Defaults to ``False`` for safety reasons, otherwise ``True`` unless ``os.environ("DEBUG")`` is a "falsy" string.
+
 ``TEMPLATE_DEBUG``
 ~~~~~~~~~~~~~~~~~~
+
+As for ``DEBUG``, but defaults to the value of ``DEBUG``.
 
 ``CACHES``
 ~~~~~~~~~~
 
 Uses
-`django-cache-url <https://github.com/ghickman/django-cache-url>`__
+`django-cache-url <https://github.com/ghickman/django-cache-url>`__ to parse ``os.environ("CACHE_URL")``.
 
 ``LOGGING``
 ~~~~~~~~~~~
+
+A static ``LOGGING`` dict that configures `12factor-style logging <http://12factor.net/logs>`__.
 
 ``DATABASES``
 ~~~~~~~~~~~~~
@@ -111,6 +117,9 @@ parses ``DATABASE_URL`` if it exists, otherwise falls back to in-memory sqlite.
 ``ALLOWED_HOSTS``
 ~~~~~~~~~~~~~~~~~
 
+Treats ``os.environ("ALLOWED_HOSTS")`` as a comma-separated list.
+
 ``SECRET_KEY``
 ~~~~~~~~~~~~~~
 
+Uses ``os.environ("SECRET_KEY)`` - required if ``DEBUG==False``.
