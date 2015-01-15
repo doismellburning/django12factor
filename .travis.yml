@@ -1,9 +1,8 @@
 language: python
-python:
-  - "2.7"
-  - "3.2"
-  - "3.3"
-  - "3.4"
-install:
-  - "pip install --editable ."
-script: "nosetests"
+env:
+    - TOXENV=py27
+    - TOXENV=py32
+    - TOXENV=py33
+    - TOXENV=py34
+script:
+    - tox -e $TOXENV
