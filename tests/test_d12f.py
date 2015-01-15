@@ -22,6 +22,13 @@ class TestD12F(unittest.TestCase):
         with debugenv():
             self.assertTrue(d12f()['DEBUG'])
 
+    def test_debug_defaults_to_off(self):
+        """
+        Ensure that by default, DEBUG is false (for safety reasons)
+        """
+        with env(SECRET_KEY="x"):
+            self.assertFalse(d12f()['DEBUG'])
+
     def test_db(self):
         with debugenv():
             self.assertIn("sqlite", d12f()['DATABASES']['default']['ENGINE'])
