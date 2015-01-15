@@ -6,3 +6,5 @@ env:
     - TOXENV=py34
 script:
     - tox -e $TOXENV
+matrix:
+    fast_finish: true
