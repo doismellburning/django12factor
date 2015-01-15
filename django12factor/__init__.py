@@ -5,7 +5,10 @@ import os
 import logging
 import sys
 
+from .environment_variable_loader import EnvironmentVariableLoader
+
 logger = logging.getLogger(__name__)
+
 
 _FALSE_STRINGS = [
     "no",
@@ -81,6 +84,8 @@ safety reasons""")
         custom_settings = []
 
     for cs in custom_settings:
-        settings[cs] = os.getenv(cs)
+        if not isinstance(cs, EnvironmentVariableLoader):
+            cs = EnvironmentVariableLoader(cs)
+        settings[cs.name] = cs.load_value()
 
     return settings
