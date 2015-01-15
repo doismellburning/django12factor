@@ -22,6 +22,9 @@ focuses on the `Config <http://12factor.net/config>`__ - "Store config
 in the environment"; `Heroku <http://www.heroku.com/>`__ users with
 addons will be particularly familiar with this.
 
+Still not sure of the benefits? Check out 
+"`Twelve-Factor Config: Misunderstandings and Advice <http://blog.doismellburning.co.uk/2014/10/06/twelve-factor-config-misunderstandings-and-advice/>`__".
+
 Usage
 -----
 
