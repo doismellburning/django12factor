@@ -77,7 +77,7 @@ safety reasons""")
 
     settings.update(dj_email_url.config(default='dummy://'))
 
-    settings['ALLOWED_HOSTS'] = os.getenv('ALLOWED_HOSTS', '').split(',')
+    settings['ALLOWED_HOSTS'] = _allowed_hosts()
 
     # For keys to different apis, etc.
     if custom_settings is None:
@@ -89,3 +89,13 @@ safety reasons""")
         settings[cs.name] = cs.load_value()
 
     return settings
+
+
+def _allowed_hosts():
+    e = EnvironmentVariableLoader(
+        "ALLOWED_HOSTS",
+        parser=lambda x: x.split(","),
+        default=[]
+    )
+
+    return e.load_value()

@@ -64,3 +64,13 @@ class TestD12F(unittest.TestCase):
             settings = d12f(['PRESENT', 'MISSING'])
             self.assertEquals(present, settings['PRESENT'])
             self.assertIsNone(settings['MISSING'])
+
+    def test_allowed_hosts(self):
+        with debugenv(ALLOWED_HOSTS="a"):
+            self.assertEquals(d12f()['ALLOWED_HOSTS'], ["a"])
+
+        with debugenv(ALLOWED_HOSTS="a,b"):
+            self.assertEquals(d12f()['ALLOWED_HOSTS'], ["a", "b"])
+
+        with debugenv():
+            self.assertEquals(d12f()["ALLOWED_HOSTS"], [])
