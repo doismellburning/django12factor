@@ -42,3 +42,12 @@ class TestEVL(unittest.TestCase):
                 "with a default of %s, but got %s instead" %
                 (key, str(default), str(d[key]))
             )
+
+    def test_loading_int(self):
+        key = "FOO"
+        value = 1
+        with debugenv(**{key: str(value)}):
+            d = d12f(custom_settings=[EVL(key, parser=int)])
+            i = d[key]
+            self.assertEquals(i, value)
+            self.assertIsInstance(i, int)
