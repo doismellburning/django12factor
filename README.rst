@@ -145,7 +145,7 @@ variables with the ``custom_setting`` ``kwarg``.  This takes an iterable of
 
 ``EnvironmentVariableLoader`` instances are created with a ``name`` - the name
 of the environment variable to load, an optional ``default`` for the case when
-the environment variable is not set, and an optional ``loader`` - a callable
+the environment variable is not set, and an optional ``parser`` - a callable
 that should take the string value of an environment variable and convert it as
 desired for your settings.
 
@@ -157,7 +157,7 @@ For example:
 
     custom_settings = (
         EVL("API_HOST", default="localhost"),
-        EVL("API_PORT", default=8080, loader=int),
+        EVL("API_PORT", default=8080, parser=int),
     )
 
 For brevity and compatibility, any ``custom_setting`` that is a string will be
