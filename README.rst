@@ -142,6 +142,7 @@ This takes an iterable of ``django12factor.EnvironmentVariableLoader`` instances
 For example:
 
 .. code-block: python::
+
     from django12factor import EVL
 
     custom_settings = (
