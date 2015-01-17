@@ -22,7 +22,7 @@ focuses on the `Config <http://12factor.net/config>`__ - "Store config
 in the environment"; `Heroku <http://www.heroku.com/>`__ users with
 addons will be particularly familiar with this.
 
-Still not sure of the benefits? Check out 
+Still not sure of the benefits? Check out
 "`Twelve-Factor Config: Misunderstandings and Advice <http://blog.doismellburning.co.uk/2014/10/06/twelve-factor-config-misunderstandings-and-advice/>`__".
 
 Usage
@@ -70,7 +70,8 @@ You can also add non-Django settings this way, e.g. keys to APIs:
     MAILCHIMP_API_KEY = d12f['MAILCHIMP_API_KEY']
     GOOGLE_ANALYTICS_KEY = d12f['GOOGLE_ANALYTICS_KEY']
 
-In the event of a ``custom_setting`` not being set in the environment, it will default to ``None``.
+In the event of a ``custom_setting`` not being set in the environment, it will
+default to ``None``.
 
 Give me everything!
 ~~~~~~~~~~~~~~~~~~~
@@ -85,7 +86,9 @@ If you say so...
 Utilities
 ---------
 
-``django12factor.getenv_bool`` is a utility function that takes the name of an environment variable, and returns ``True`` _unless_ it is set to either a "falsey" string (e.g. ``"no"``) or not set.
+``django12factor.getenv_bool`` is a utility function that takes the name of an
+environment variable, and returns ``True`` _unless_ it is set to either a
+"falsey" string (e.g. ``"no"``) or not set.
 
 Settings
 --------
@@ -95,7 +98,8 @@ The following settings are currently supported:
 ``DEBUG``
 ~~~~~~~~~
 
-Defaults to ``False`` for safety reasons, otherwise ``True`` unless ``os.environ("DEBUG")`` is a "falsy" string.
+Defaults to ``False`` for safety reasons, otherwise ``True`` unless
+``os.environ("DEBUG")`` is a "falsy" string.
 
 ``TEMPLATE_DEBUG``
 ~~~~~~~~~~~~~~~~~~
