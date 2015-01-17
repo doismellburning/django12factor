@@ -129,3 +129,24 @@ Treats ``os.environ("ALLOWED_HOSTS")`` as a comma-separated list.
 ~~~~~~~~~~~~~~
 
 Uses ``os.environ("SECRET_KEY)`` - required if ``DEBUG==False``.
+
+
+Custom Settings
+---------------
+
+You can make ``django12factor`` load arbitrary settings from environment variables with the ``custom_setting`` ``kwarg``.
+This takes an iterable of ``django12factor.EnvironmentVariableLoader`` instances (also importable as ``django12factor.EVL`` for brevity) or strings
+
+``EnvironmentVariableLoader`` instances are created with a ``name`` - the name of the environment variable to load, an optional ``default`` for the case when the environment variable is not set, and an optional ``loader`` - a callable that should take the string value of an environment variable and convert it as desired for your settings.
+
+For example:
+
+.. code-block: python::
+    from django12factor import EVL
+
+    custom_settings = (
+        EVL("API_HOST", default="localhost"),
+        EVL("API_PORT", default=8080, loader=int),
+    )
+
+For brevity and compatibility, any ``custom_setting`` that is a string will be treated as the name of an ``EnvironmentVariableLoader``.
