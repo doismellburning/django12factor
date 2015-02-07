@@ -12,6 +12,10 @@ django-12factor
        :target: https://requires.io/github/doismellburning/django12factor/requirements/?branch=master
        :alt: Requirements Status
 
+.. image:: https://coveralls.io/repos/doismellburning/django12factor/badge.svg
+       :target: https://coveralls.io/r/doismellburning/django12factor
+       :alt: Coverage Status
+
 What is it?
 -----------
 
