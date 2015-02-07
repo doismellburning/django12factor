@@ -85,5 +85,5 @@ class TestD12F(unittest.TestCase):
         with debugenv():
             self.assertEquals(defaultdb()['NAME'], ":memory:")
 
-        with debugenv(DATABASE_URL="postgres://USER:PASSWORD@HOST:PORT/NAME"):
+        with debugenv(DATABASE_URL="postgres://USER:PASSWORD@HOST:9/NAME"):
             self.assertEquals(defaultdb()['NAME'], "NAME")
