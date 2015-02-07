@@ -132,4 +132,4 @@ Treats ``os.environ("ALLOWED_HOSTS")`` as a comma-separated list.
 ``SECRET_KEY``
 ~~~~~~~~~~~~~~
 
-Uses ``os.environ("SECRET_KEY)`` - required if ``DEBUG==False``.
+Uses ``os.environ("SECRET_KEY")`` - required if ``DEBUG==False``.
