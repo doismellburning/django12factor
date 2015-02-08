@@ -14,3 +14,5 @@ script:
     - tox -e $TOXENV
 matrix:
     fast_finish: true
+notifications:
+    email: false
