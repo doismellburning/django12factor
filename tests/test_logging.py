@@ -50,13 +50,17 @@ class TestLogging(unittest.TestCase):
             logging.config.dictConfig(django12factor.factorise()['LOGGING'])
             self.assertTrue(has_handler(logging.root, "stdout"))
 
+    def test_capture_stdout_works_with_print(self):
+        """
+        Assert that `capture_stdout` captures `print` text
+        """
+        output = capture_stdout(print, "wibble")
+        self.assertIn("wibble", output)
+
     def test_logging_to_stdout(self):
 
         with debug_env:
             logging.config.dictConfig(django12factor.factorise()['LOGGING'])
-
-            output = capture_stdout(print, "wibble")
-            self.assertIn("wibble", output)
 
             message = "lorem ipsum"
             output = capture_stdout(logging.info, message)
