@@ -60,4 +60,8 @@ class TestLogging(unittest.TestCase):
 
             message = "lorem ipsum"
             output = capture_stdout(logging.info, message)
-            self.assertIn(message, output, "Message '%s' should have been logged to stdout and captured; instead '%s' was captured" % (message, output))
+            self.assertIn(
+                message, output,
+                "Message '%s' should have been logged to stdout and captured;"
+                "instead '%s' was captured" % (message, output)
+            )
