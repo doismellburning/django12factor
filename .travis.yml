@@ -14,3 +14,10 @@ script:
     - tox -e $TOXENV
 matrix:
     fast_finish: true
+notifications:
+    email: false
+    irc:
+        channels:
+            - "chat.freenode.net#django12factor"
+        skip_join: true
+        use_notice: true
