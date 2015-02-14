@@ -1,7 +1,9 @@
 language: python
 sudo: false
 env:
+    - TOXENV=doc8
     - TOXENV=flake8
+    - TOXENV=pep257
     - TOXENV=py27
     - TOXENV=py32
     - TOXENV=py33
@@ -12,3 +14,10 @@ script:
     - tox -e $TOXENV
 matrix:
     fast_finish: true
+notifications:
+    email: false
+    irc:
+        channels:
+            - "chat.freenode.net#django12factor"
+        skip_join: true
+        use_notice: true

@@ -8,6 +8,14 @@ django-12factor
        :target: https://landscape.io/github/doismellburning/django12factor/master
        :alt: Code Health
 
+.. image:: https://requires.io/github/doismellburning/django12factor/requirements.svg?branch=master
+       :target: https://requires.io/github/doismellburning/django12factor/requirements/?branch=master
+       :alt: Requirements Status
+
+.. image:: https://coveralls.io/repos/doismellburning/django12factor/badge.svg
+       :target: https://coveralls.io/r/doismellburning/django12factor
+       :alt: Coverage Status
+
 What is it?
 -----------
 
