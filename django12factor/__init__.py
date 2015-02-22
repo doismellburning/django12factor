@@ -1,3 +1,11 @@
+"""
+django12factor: Bringing 12factor configuration to Django.
+
+* http://12factor.net/
+* http://12factor.net/config
+* https://github.com/doismellburning/django12factor
+"""
+
 import django_cache_url
 import dj_database_url
 import dj_email_url
@@ -15,6 +23,17 @@ _FALSE_STRINGS = [
 
 
 def getenv_bool(setting_name):
+    """
+    Get a boolean from an environment variable.
+
+    Why use this and not just `bool(os.getenv("X"))`?  It would be quite
+    reasonable to see `DEBUG=true`, and infer that setting `DEBUG=false` would Do
+    The Right Thing; however `bool("false") == True`.
+
+    This function attempts to do basic "is the string falsey" detection so
+    `DEBUG=false` behaves as expected
+    """
+
     if setting_name not in os.environ:
         return False
 
