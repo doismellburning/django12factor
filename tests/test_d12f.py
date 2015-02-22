@@ -65,3 +65,23 @@ class TestD12F(unittest.TestCase):
             settings = d12f(['PRESENT', 'MISSING'])
             self.assertEquals(present, settings['PRESENT'])
             self.assertIsNone(settings['MISSING'])
+
+    def test_multiple_db_support(self):
+        DBNAME = "test"
+        DB_URL_NAME = "%s_DATABASE_URL" % DBNAME.upper()
+        e = {DB_URL_NAME: "postgres://username:password@host:1234/dbname"}
+
+        with debugenv(**e):
+            dbs = d12f()['DATABASES']
+            self.assertIn(
+                'sqlite',
+                dbs['default']['ENGINE'],
+                "Failed to load default DATABASE"
+            )
+            self.assertIn(
+                DBNAME,
+                dbs,
+                "Failed to parse a database called '%s' from the environment "
+                "variable %s" % (DBNAME, DB_URL_NAME)
+            )
+            self.assertIn('postgres', dbs[DBNAME]['ENGINE'])

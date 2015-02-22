@@ -132,6 +132,10 @@ Uses
 `dj-database-url <https://github.com/kennethreitz/dj-database-url>`__ -
 parses ``DATABASE_URL`` if it exists, otherwise falls back to in-memory sqlite.
 
+Anything of the form ``FOO_DATABASE_URL`` will be parsed as
+``DATABASES['foo']``, allowing you to configure multiple databases via the
+environment.
+
 ``ALLOWED_HOSTS``
 ~~~~~~~~~~~~~~~~~
 

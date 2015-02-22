@@ -73,6 +73,14 @@ def factorise(custom_settings=None):
         'default': dj_database_url.config(default='sqlite://:memory:')
     }
 
+    for (potential_database_url, value) in os.environ.iteritems():
+        _SUFFIX = "_DATABASE_URL"
+        _OFFSET = len(_SUFFIX)
+        if potential_database_url.endswith(_SUFFIX):
+            dbname = potential_database_url[:-_OFFSET].lower()
+            db = dj_database_url.parse(os.environ[potential_database_url])
+            settings['DATABASES'][dbname] = db
+
     settings['DEBUG'] = getenv_bool('DEBUG')
     if 'TEMPLATE_DEBUG' in os.environ:
         settings['TEMPLATE_DEBUG'] = getenv_bool('TEMPLATE_DEBUG')
