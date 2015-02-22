@@ -11,6 +11,7 @@ import dj_database_url
 import dj_email_url
 import os
 import logging
+import six
 import sys
 
 logger = logging.getLogger(__name__)
@@ -73,7 +74,7 @@ def factorise(custom_settings=None):
         'default': dj_database_url.config(default='sqlite://:memory:')
     }
 
-    for (potential_database_url, value) in os.environ.iteritems():
+    for (potential_database_url, value) in six.iteritems(os.environ):
         _SUFFIX = "_DATABASE_URL"
         _OFFSET = len(_SUFFIX)
         if potential_database_url.endswith(_SUFFIX):
