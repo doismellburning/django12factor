@@ -27,8 +27,8 @@ def getenv_bool(setting_name):
     Get a boolean from an environment variable.
 
     Why use this and not just `bool(os.getenv("X"))`?  It would be quite
-    reasonable to see `DEBUG=true`, and infer that setting `DEBUG=false` would Do
-    The Right Thing; however `bool("false") == True`.
+    reasonable to see `DEBUG=true`, and infer that setting `DEBUG=false` would
+    Do The Right Thing; however `bool("false") == True`.
 
     This function attempts to do basic "is the string falsey" detection so
     `DEBUG=false` behaves as expected
