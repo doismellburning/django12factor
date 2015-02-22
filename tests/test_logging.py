@@ -27,9 +27,9 @@ def capture_stdout(command, *args, **kwargs):
     command(*args, **kwargs)
 
     captured_stdout.seek(0)
-    return captured_stdout.read()
-
     sys.stdout = normal_stdout
+
+    return captured_stdout.read()
 
 
 class TestLogging(unittest.TestCase):
