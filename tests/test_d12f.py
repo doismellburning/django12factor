@@ -82,7 +82,9 @@ class TestD12F(unittest.TestCase):
                 DBNAME,
                 dbs,
                 "Failed to parse a database called '%s' from the environment "
-                "variable %s" % (DBNAME, DB_URL_NAME)
+                "variable %s",
+                DBNAME,
+                DB_URL_NAME
             )
             self.assertIn('postgres', dbs[DBNAME]['ENGINE'])
 
@@ -122,5 +124,8 @@ class TestD12F(unittest.TestCase):
                 len(dbs),
                 1,
                 "Loaded %d databases instead of just 1 (default) - got %s "
-                "from environment %s" % (len(dbs), dbs.keys(), e)
+                "from environment %s",
+                len(dbs),
+                dbs.keys(),
+                e
             )
