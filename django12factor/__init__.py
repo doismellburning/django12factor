@@ -74,12 +74,33 @@ def factorise(custom_settings=None):
         'default': dj_database_url.config(default='sqlite://:memory:')
     }
 
-    for (potential_database_url, value) in six.iteritems(os.environ):
+    for (key, value) in six.iteritems(os.environ):
         _SUFFIX = "_DATABASE_URL"
         _OFFSET = len(_SUFFIX)
-        if potential_database_url.endswith(_SUFFIX):
-            dbname = potential_database_url[:-_OFFSET].lower()
-            db = dj_database_url.parse(os.environ[potential_database_url])
+
+        if key.endswith(_SUFFIX):
+            prefix = key[:-_OFFSET]
+
+            if prefix != prefix.upper():
+                # i.e. it was not already all upper-cased
+                logger.warn(
+                    "Not parsing %s as a database url because the "
+                    "prefix (%s) was not all upper-case - django12factor "
+                    "will convert prefixes to lower-case for use as database "
+                    "names" % (key, prefix))
+                continue
+
+            dbname = key[:-_OFFSET].lower()
+
+            if dbname == "default" and 'DATABASE_URL' in os.environ:
+                logger.warn(
+                    "You have set the environment variables DATABASE_URL "
+                    "_and_ {key}, both of which would configure "
+                    "`DATABASES['default']`. {key} is being "
+                    "ignored.".format(key=key))
+                continue
+
+            db = dj_database_url.parse(os.environ[key])
             settings['DATABASES'][dbname] = db
 
     settings['DEBUG'] = getenv_bool('DEBUG')

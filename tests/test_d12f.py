@@ -85,3 +85,42 @@ class TestD12F(unittest.TestCase):
                 "variable %s" % (DBNAME, DB_URL_NAME)
             )
             self.assertIn('postgres', dbs[DBNAME]['ENGINE'])
+
+    def test_multiple_default_databases(self):
+        """
+        Ensure if DEFAULT_DATABASE_URL and DATABASE_URL are set, latter wins.
+        """
+
+        IGNORED_DB_NAME = "should_be_ignored"
+        DATABASE_URL = "postgres://username:password@host:1234/dbname"
+        IGNORED = "postgres://username:password@host:1234/%s" % IGNORED_DB_NAME
+
+        with debugenv(DATABASE_URL=DATABASE_URL, DEFAULT_DATABASE_URL=IGNORED):
+            default_db = d12f()['DATABASES']['default']
+            self.assertNotEquals(
+                default_db['NAME'],
+                IGNORED_DB_NAME,
+                "Parsed the contents of DEFAULT_DATABASE_URL instead of "
+                "ignoring it in favour of DATABASE_URL"
+            )
+
+    def test_non_capitalised_database_ignored(self):
+        """
+        Ensure "malformed" X_DATABASE_URLs aren't parsed.
+        """
+
+        e = {
+            'invalid_DATABASE_URL': "",
+            'AlsoInValid_DATABASE_URL': "",
+            'ALMOST_CORRECt_DATABASE_URL': "",
+        }
+
+        with debugenv(**e):
+            dbs = d12f()['DATABASES']
+
+            self.assertEquals(
+                len(dbs),
+                1,
+                "Loaded %d databases instead of just 1 (default) - got %s "
+                "from environment %s" % (len(dbs), dbs.keys(), e)
+            )
