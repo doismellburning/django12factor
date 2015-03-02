@@ -100,7 +100,7 @@ def factorise(custom_settings=None):
                     "ignored.".format(key=key))
                 continue
 
-            db = dj_database_url.parse(os.environ[key])
+            db = dj_database_url.parse(value)
             settings['DATABASES'][dbname] = db
 
     settings['DEBUG'] = getenv_bool('DEBUG')
