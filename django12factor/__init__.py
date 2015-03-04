@@ -11,6 +11,7 @@ import dj_database_url
 import dj_email_url
 import os
 import logging
+import six
 import sys
 
 logger = logging.getLogger(__name__)
@@ -72,6 +73,35 @@ def factorise(custom_settings=None):
     settings['DATABASES'] = {
         'default': dj_database_url.config(default='sqlite://:memory:')
     }
+
+    for (key, value) in six.iteritems(os.environ):
+        _SUFFIX = "_DATABASE_URL"
+        _OFFSET = len(_SUFFIX)
+
+        if key.endswith(_SUFFIX):
+            prefix = key[:-_OFFSET]
+
+            if prefix != prefix.upper():
+                # i.e. it was not already all upper-cased
+                logger.warn(
+                    "Not parsing %s as a database url because the "
+                    "prefix (%s) was not all upper-case - django12factor "
+                    "will convert prefixes to lower-case for use as database "
+                    "names" % (key, prefix))
+                continue
+
+            dbname = key[:-_OFFSET].lower()
+
+            if dbname == "default" and 'DATABASE_URL' in os.environ:
+                logger.warn(
+                    "You have set the environment variables DATABASE_URL "
+                    "_and_ {key}, both of which would configure "
+                    "`DATABASES['default']`. {key} is being "
+                    "ignored.".format(key=key))
+                continue
+
+            db = dj_database_url.parse(value)
+            settings['DATABASES'][dbname] = db
 
     settings['DEBUG'] = getenv_bool('DEBUG')
     if 'TEMPLATE_DEBUG' in os.environ:
