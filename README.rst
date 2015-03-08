@@ -8,6 +8,14 @@ django-12factor
        :target: https://landscape.io/github/doismellburning/django12factor/master
        :alt: Code Health
 
+.. image:: https://requires.io/github/doismellburning/django12factor/requirements.svg?branch=master
+       :target: https://requires.io/github/doismellburning/django12factor/requirements/?branch=master
+       :alt: Requirements Status
+
+.. image:: https://coveralls.io/repos/doismellburning/django12factor/badge.svg
+       :target: https://coveralls.io/r/doismellburning/django12factor
+       :alt: Coverage Status
+
 What is it?
 -----------
 
@@ -123,6 +131,10 @@ A static ``LOGGING`` dict that configures `12factor-style logging <http://12fact
 Uses
 `dj-database-url <https://github.com/kennethreitz/dj-database-url>`__ -
 parses ``DATABASE_URL`` if it exists, otherwise falls back to in-memory sqlite.
+
+Anything of the form ``FOO_DATABASE_URL`` will be parsed as
+``DATABASES['foo']``, allowing you to configure multiple databases via the
+environment.
 
 ``ALLOWED_HOSTS``
 ~~~~~~~~~~~~~~~~~
