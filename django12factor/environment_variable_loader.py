@@ -17,7 +17,8 @@ class EnvironmentVariableLoader(object):
     """
     Load an environment variable, for a flexible value of load.
 
-    Provide an (optional) parser function (e.g. `int`), and an (optional) default.
+    Provide an (optional) parser function (e.g. `int`), and an (optional)
+    default.
     """
 
     def __init__(self, name, default=None, parser=identity):
