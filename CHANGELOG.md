@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.3
+
 * Python 3.2 and 3.4 support
 * Improved test suite - 100% coverage + flake8
 * Multiple database support - `TEST_DATABASE_URL` will create `settings.DATABASES['test']`
