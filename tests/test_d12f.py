@@ -89,6 +89,26 @@ class TestD12F(unittest.TestCase):
             self.assertEquals(defaultdb()['NAME'], "NAME")
 
     def test_multiple_db_support(self):
+        """
+        Explicit test that multiple DATABASE_URLs are supported.
+
+        https://github.com/doismellburning/django12factor/issues/36 turned out
+        to be due to using an incorrect version of the library, BUT it made me
+        realise that there was no explicit test for multiple named databases.
+        So this is one.
+        """
+        e = {
+            "CLIENT_DATABASE_URL": "mysql://root@127.0.0.1:3306/apps",
+            "DATABASE_URL": "mysql://root@127.0.0.1:3306/garage",
+            "BRD_DATABASE_URL": "mysql://root@127.0.0.1:3306/brd",
+        }
+
+        with debugenv(**e):
+            dbs = d12f()['DATABASES']
+
+            self.assertEquals(len(dbs), 3)
+
+    def test_named_db_support(self):
         DBNAME = "test"
         DB_URL_NAME = "%s_DATABASE_URL" % DBNAME.upper()
         e = {DB_URL_NAME: "postgres://username:password@host:1234/dbname"}
