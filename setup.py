@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-__version__ = '1.2'
+__version__ = '1.3'
 
 HERE = os.path.dirname(__file__)
 
@@ -30,6 +30,7 @@ setup(
         "dj-database-url>=0.2,<0.4",
         "dj-email-url==0.0.2",
         "django-cache-url==0.8.0",
+        "six",
     ),
 
     tests_require=(

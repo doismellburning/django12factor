@@ -2,6 +2,15 @@ import os
 
 
 class Env(object):
+    """
+    Test helper providing temporary environments.
+
+    Usage:
+
+        with Env(DEBUG="true"):
+            d = django12factor.factorise()
+    """
+
     def __init__(self, **kwargs):
         self.environ = kwargs
 

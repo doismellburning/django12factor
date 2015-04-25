@@ -1,8 +1,17 @@
+"""
+django12factor: Bringing 12factor configuration to Django.
+
+* http://12factor.net/
+* http://12factor.net/config
+* https://github.com/doismellburning/django12factor
+"""
+
 import django_cache_url
 import dj_database_url
 import dj_email_url
 import os
 import logging
+import six
 import sys
 
 logger = logging.getLogger(__name__)
@@ -15,6 +24,17 @@ _FALSE_STRINGS = [
 
 
 def getenv_bool(setting_name):
+    """
+    Get a boolean from an environment variable.
+
+    Why use this and not just `bool(os.getenv("X"))`?  It would be quite
+    reasonable to see `DEBUG=true`, and infer that setting `DEBUG=false` would
+    Do The Right Thing; however `bool("false") == True`.
+
+    This function attempts to do basic "is the string falsey" detection so
+    `DEBUG=false` behaves as expected
+    """
+
     if setting_name not in os.environ:
         return False
 
@@ -53,6 +73,35 @@ def factorise(custom_settings=None):
     settings['DATABASES'] = {
         'default': dj_database_url.config(default='sqlite://:memory:')
     }
+
+    for (key, value) in six.iteritems(os.environ):
+        _SUFFIX = "_DATABASE_URL"
+        _OFFSET = len(_SUFFIX)
+
+        if key.endswith(_SUFFIX):
+            prefix = key[:-_OFFSET]
+
+            if prefix != prefix.upper():
+                # i.e. it was not already all upper-cased
+                logger.warn(
+                    "Not parsing %s as a database url because the "
+                    "prefix (%s) was not all upper-case - django12factor "
+                    "will convert prefixes to lower-case for use as database "
+                    "names" % (key, prefix))
+                continue
+
+            dbname = key[:-_OFFSET].lower()
+
+            if dbname == "default" and 'DATABASE_URL' in os.environ:
+                logger.warn(
+                    "You have set the environment variables DATABASE_URL "
+                    "_and_ {key}, both of which would configure "
+                    "`DATABASES['default']`. {key} is being "
+                    "ignored.".format(key=key))
+                continue
+
+            db = dj_database_url.parse(value)
+            settings['DATABASES'][dbname] = db
 
     settings['DEBUG'] = getenv_bool('DEBUG')
     if 'TEMPLATE_DEBUG' in os.environ:
