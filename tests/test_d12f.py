@@ -75,6 +75,19 @@ class TestD12F(unittest.TestCase):
         with debugenv():
             self.assertEquals(d12f()["ALLOWED_HOSTS"], [])
 
+    def test_djdb(self):
+        """
+        Assert basic behaviour about DATABASE_URL parsing and defaults
+        """
+        def defaultdb():
+            return d12f()['DATABASES']['default']
+
+        with debugenv():
+            self.assertEquals(defaultdb()['NAME'], ":memory:")
+
+        with debugenv(DATABASE_URL="postgres://USER:PASSWORD@HOST:9/NAME"):
+            self.assertEquals(defaultdb()['NAME'], "NAME")
+
     def test_multiple_db_support(self):
         """
         Explicit test that multiple DATABASE_URLs are supported.

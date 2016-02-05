@@ -74,7 +74,7 @@ def factorise(custom_settings=None):
     }
 
     settings['DATABASES'] = {
-        'default': dj_database_url.config(default='sqlite://:memory:')
+        'default': _database()
     }
 
     for (key, value) in six.iteritems(os.environ):
@@ -145,6 +145,16 @@ def _allowed_hosts():
         "ALLOWED_HOSTS",
         parser=lambda x: x.split(","),
         default=[]
+    )
+
+    return e.load_value()
+
+
+def _database():
+    e = EnvironmentVariableLoader(
+        "DATABASE_URL",
+        parser=dj_database_url.parse,
+        default=dj_database_url.parse('sqlite://:memory:')
     )
 
     return e.load_value()
