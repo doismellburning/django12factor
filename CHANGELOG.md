@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Dropped Python 3.2 support
+
 ## 1.3
 
 * Python 3.2 and 3.4 support
