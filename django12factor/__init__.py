@@ -81,7 +81,7 @@ def factorise(custom_settings=None):
         if key.endswith(_SUFFIX):
             prefix = key[:-_OFFSET]
 
-            if prefix != prefix.upper():
+            if not prefix.isupper():
                 # i.e. it was not already all upper-cased
                 logger.warn(
                     "Not parsing %s as a database url because the "
