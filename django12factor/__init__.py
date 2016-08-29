@@ -9,6 +9,7 @@ django12factor: Bringing 12factor configuration to Django.
 import django_cache_url
 import dj_database_url
 import dj_email_url
+import django
 import os
 import logging
 import six
@@ -104,10 +105,11 @@ def factorise(custom_settings=None):
             settings['DATABASES'][dbname] = db
 
     settings['DEBUG'] = getenv_bool('DEBUG')
-    if 'TEMPLATE_DEBUG' in os.environ:
-        settings['TEMPLATE_DEBUG'] = getenv_bool('TEMPLATE_DEBUG')
-    else:
-        settings['TEMPLATE_DEBUG'] = settings['DEBUG']
+    if django.VERSION < (1, 8):
+        if 'TEMPLATE_DEBUG' in os.environ:
+            settings['TEMPLATE_DEBUG'] = getenv_bool('TEMPLATE_DEBUG')
+        else:
+            settings['TEMPLATE_DEBUG'] = settings['DEBUG']
 
     # Slightly opinionated...
     if 'SECRET_KEY' in os.environ:
