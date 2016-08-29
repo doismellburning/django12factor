@@ -89,7 +89,9 @@ class TestLogging(unittest.TestCase):
     def test_logging_to_stdout(self):
         with debug_env:
             with captured_stdout() as stdout:
-                logging.config.dictConfig(django12factor.factorise()["LOGGING"])
+                logging.config.dictConfig(
+                    django12factor.factorise()["LOGGING"]
+                )
                 message = "lorem ipsum"
                 logging.info(message)
 
