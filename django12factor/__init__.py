@@ -83,7 +83,7 @@ def factorise(custom_settings=None):
 
             if not prefix.isupper():
                 # i.e. it was not already all upper-cased
-                logger.warn(
+                logger.warning(
                     "Not parsing %s as a database url because the "
                     "prefix (%s) was not all upper-case - django12factor "
                     "will convert prefixes to lower-case for use as database "
@@ -93,7 +93,7 @@ def factorise(custom_settings=None):
             dbname = key[:-_OFFSET].lower()
 
             if dbname == "default" and 'DATABASE_URL' in os.environ:
-                logger.warn(
+                logger.warning(
                     "You have set the environment variables DATABASE_URL "
                     "_and_ {key}, both of which would configure "
                     "`DATABASES['default']`. {key} is being "
