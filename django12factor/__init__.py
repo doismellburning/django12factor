@@ -1,8 +1,8 @@
 """
 django12factor: Bringing 12factor configuration to Django.
 
-* http://12factor.net/
-* http://12factor.net/config
+* https://12factor.net/
+* https://12factor.net/config
 * https://github.com/doismellburning/django12factor
 """
 
@@ -48,7 +48,7 @@ def factorise(custom_settings=None):
     """
     Return a dict of settings for Django, acquired from the environment.
 
-    This is done in a 12factor-y way - see http://12factor.net/config
+    This is done in a 12factor-y way - see https://12factor.net/config
 
     Caller probably wants to, in `settings.py`:
 
