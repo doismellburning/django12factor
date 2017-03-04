@@ -88,7 +88,7 @@ def factorise(custom_settings=None):
                     "Not parsing %s as a database url because the "
                     "prefix (%s) was not all upper-case - django12factor "
                     "will convert prefixes to lower-case for use as database "
-                    "names" % (key, prefix))
+                    "names", key, prefix)
                 continue
 
             dbname = key[:-_OFFSET].lower()
@@ -96,9 +96,9 @@ def factorise(custom_settings=None):
             if dbname == "default" and 'DATABASE_URL' in os.environ:
                 logger.warning(
                     "You have set the environment variables DATABASE_URL "
-                    "_and_ {key}, both of which would configure "
+                    "_and_ %s, both of which would configure "
                     "`DATABASES['default']`. {key} is being "
-                    "ignored.".format(key=key))
+                    "ignored.", key)
                 continue
 
             db = dj_database_url.parse(value)
