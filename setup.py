@@ -31,6 +31,7 @@ setup(
         "dj-email-url==0.0.8",
         "django-cache-url==1.2.0",
         "six",
+        "django",
     ),
 
     tests_require=(
