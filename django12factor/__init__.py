@@ -1,8 +1,8 @@
 """
 django12factor: Bringing 12factor configuration to Django.
 
-* http://12factor.net/
-* http://12factor.net/config
+* https://12factor.net/
+* https://12factor.net/config
 * https://github.com/doismellburning/django12factor
 """
 
@@ -48,7 +48,7 @@ def factorise(custom_settings=None):
     """
     Return a dict of settings for Django, acquired from the environment.
 
-    This is done in a 12factor-y way - see http://12factor.net/config
+    This is done in a 12factor-y way - see https://12factor.net/config
 
     Caller probably wants to, in `settings.py`:
 
@@ -88,7 +88,7 @@ def factorise(custom_settings=None):
                     "Not parsing %s as a database url because the "
                     "prefix (%s) was not all upper-case - django12factor "
                     "will convert prefixes to lower-case for use as database "
-                    "names" % (key, prefix))
+                    "names", key, prefix)
                 continue
 
             dbname = key[:-_OFFSET].lower()
@@ -96,9 +96,9 @@ def factorise(custom_settings=None):
             if dbname == "default" and 'DATABASE_URL' in os.environ:
                 logger.warning(
                     "You have set the environment variables DATABASE_URL "
-                    "_and_ {key}, both of which would configure "
+                    "_and_ %s, both of which would configure "
                     "`DATABASES['default']`. {key} is being "
-                    "ignored.".format(key=key))
+                    "ignored.", key)
                 continue
 
             db = dj_database_url.parse(value)

@@ -12,16 +12,16 @@ What is it?
 `Django <https://www.djangoproject.com/>`__ is an awesome Python web
 framework.
 
-"`The Twelve-Factor App <http://12factor.net/>`__\ " is an awesome
+"`The Twelve-Factor App <https://12factor.net/>`__\ " is an awesome
 methodology for building SaaS apps.
 
 ``django-12factor`` makes Django more 12factor-y. Right now, this
-focuses on the `Config <http://12factor.net/config>`__ - "Store config
-in the environment"; `Heroku <http://www.heroku.com/>`__ users with
+focuses on the `Config <https://12factor.net/config>`__ - "Store config
+in the environment"; `Heroku <https://www.heroku.com/>`__ users with
 addons will be particularly familiar with this.
 
 Still not sure of the benefits? Check out
-"`Twelve-Factor Config: Misunderstandings and Advice <http://blog.doismellburning.co.uk/2014/10/06/twelve-factor-config-misunderstandings-and-advice/>`__".
+"`Twelve-Factor Config: Misunderstandings and Advice <https://blog.doismellburning.co.uk/2014/10/06/twelve-factor-config-misunderstandings-and-advice/>`__".
 
 Usage
 -----
@@ -113,7 +113,7 @@ Uses
 ``LOGGING``
 ~~~~~~~~~~~
 
-A static ``LOGGING`` dict that configures `12factor-style logging <http://12factor.net/logs>`__.
+A static ``LOGGING`` dict that configures `12factor-style logging <https://12factor.net/logs>`__.
 
 ``DATABASES``
 ~~~~~~~~~~~~~
