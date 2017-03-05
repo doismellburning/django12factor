@@ -4,13 +4,12 @@ import django12factor
 import unittest
 import django
 
-from .env import env
+from .env import (
+    debugenv,
+    env,
+)
 
 d12f = django12factor.factorise
-
-
-def debugenv(**kwargs):
-    return env(DEBUG="true", **kwargs)
 
 
 class TestD12F(unittest.TestCase):
@@ -70,6 +69,29 @@ class TestD12F(unittest.TestCase):
             settings = d12f(['PRESENT', 'MISSING'])
             self.assertEquals(present, settings['PRESENT'])
             self.assertIsNone(settings['MISSING'])
+
+    def test_allowed_hosts(self):
+        with debugenv(ALLOWED_HOSTS="a"):
+            self.assertEquals(d12f()['ALLOWED_HOSTS'], ["a"])
+
+        with debugenv(ALLOWED_HOSTS="a,b"):
+            self.assertEquals(d12f()['ALLOWED_HOSTS'], ["a", "b"])
+
+        with debugenv():
+            self.assertEquals(d12f()["ALLOWED_HOSTS"], [])
+
+    def test_djdb(self):
+        """
+        Assert basic behaviour about DATABASE_URL parsing and defaults
+        """
+        def defaultdb():
+            return d12f()['DATABASES']['default']
+
+        with debugenv():
+            self.assertEquals(defaultdb()['NAME'], ":memory:")
+
+        with debugenv(DATABASE_URL="postgres://USER:PASSWORD@HOST:9/NAME"):
+            self.assertEquals(defaultdb()['NAME'], "NAME")
 
     def test_multiple_db_support(self):
         """

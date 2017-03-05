@@ -15,7 +15,10 @@ import logging
 import six
 import sys
 
+from .environment_variable_loader import EnvironmentVariableLoader
+
 logger = logging.getLogger(__name__)
+
 
 _FALSE_STRINGS = [
     "no",
@@ -72,7 +75,7 @@ def factorise(custom_settings=None):
     }
 
     settings['DATABASES'] = {
-        'default': dj_database_url.config(default='sqlite://:memory:')
+        'default': _database()
     }
 
     for (key, value) in six.iteritems(os.environ):
@@ -125,13 +128,35 @@ safety reasons""")
 
     settings.update(dj_email_url.config(default='dummy://'))
 
-    settings['ALLOWED_HOSTS'] = os.getenv('ALLOWED_HOSTS', '').split(',')
+    settings['ALLOWED_HOSTS'] = _allowed_hosts()
 
     # For keys to different apis, etc.
     if custom_settings is None:
         custom_settings = []
 
     for cs in custom_settings:
-        settings[cs] = os.getenv(cs)
+        if not isinstance(cs, EnvironmentVariableLoader):
+            cs = EnvironmentVariableLoader(cs)
+        settings[cs.name] = cs.load_value()
 
     return settings
+
+
+def _allowed_hosts():
+    e = EnvironmentVariableLoader(
+        "ALLOWED_HOSTS",
+        parser=lambda x: x.split(","),
+        default=[]
+    )
+
+    return e.load_value()
+
+
+def _database():
+    e = EnvironmentVariableLoader(
+        "DATABASE_URL",
+        parser=dj_database_url.parse,
+        default=dj_database_url.parse('sqlite://:memory:')
+    )
+
+    return e.load_value()
