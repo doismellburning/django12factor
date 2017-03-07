@@ -1,12 +1,16 @@
 language: python
+python:
+    - "2.7"
+    - "3.4"
+    - "3.5"
+    - "3.6"
 sudo: false
 env:
     - TOXENV=doc8
     - TOXENV=flake8
     - TOXENV=pep257
-    - TOXENV=py27
-    - TOXENV=py33
-    - TOXENV=py34
+    - TOXENV=sphinx
+    - TOXENV=mypy
 install:
     - pip install tox
 script:
