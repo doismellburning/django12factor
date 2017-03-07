@@ -5,16 +5,10 @@ python:
     - "3.5"
     - "3.6"
 sudo: false
-env:
-    - TOXENV=doc8
-    - TOXENV=flake8
-    - TOXENV=pep257
-    - TOXENV=sphinx
-    - TOXENV=mypy
 install:
     - pip install tox
 script:
-    - tox -e $TOXENV
+    - tox
 matrix:
     fast_finish: true
 notifications:
