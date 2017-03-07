@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 import django12factor
 import unittest
+import django
 
 from .env import env
 
@@ -30,6 +31,9 @@ class TestD12F(unittest.TestCase):
             self.assertFalse(d12f()['DEBUG'])
 
     def test_template_debug(self):
+        # for this test, we pretend to be Django < 1.8
+        oldversion = django.VERSION
+        django.VERSION = (1, 7, 0, "test_template_debug", 1)
         with debugenv():
             # Unless explicitly set, TEMPLATE_DEBUG = DEBUG
             self.assertTrue(d12f()['TEMPLATE_DEBUG'])
@@ -38,6 +42,7 @@ class TestD12F(unittest.TestCase):
             s = d12f()
             self.assertFalse(s['TEMPLATE_DEBUG'])
             self.assertTrue(s['DEBUG'])
+        django.VERSION = oldversion
 
     def test_db(self):
         with debugenv():
