@@ -1,5 +1,5 @@
 coverage==4.3.4
-git+https://github.com/doismellburning/doc8.git@feature/display-line-lengths
+doc8==0.7.0
 flake8==3.3.0
 nose==1.3.7
 pep257==0.7.0
