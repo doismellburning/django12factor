@@ -127,6 +127,11 @@ safety reasons""")
 
     settings['ALLOWED_HOSTS'] = os.getenv('ALLOWED_HOSTS', '').split(',')
 
+    if getenv_bool('TRUST_X_FORWARDED_PROTO'):
+    	settings['SECURE_PROXY_SSL_HEADER'] = ('HTTP_X_FORWARDED_PROTO', 'https')
+    else:
+    	settings['SECURE_PROXY_SSL_HEADER'] = None
+
     # For keys to different apis, etc.
     if custom_settings is None:
         custom_settings = []
