@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Dropped Python 3.2 support
+* Use localhost as the default ALLOWED_HOSTS
 
 ## 1.3
 
