@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Dropped Python 3.2 support
+* Set default SECRET_KEY when DEBUG is on
 
 ## 1.3
 
