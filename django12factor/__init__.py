@@ -72,7 +72,7 @@ def factorise(custom_settings=None):
     }
 
     settings['DATABASES'] = {
-        'default': dj_database_url.config(default='sqlite://:memory:')
+        'default': dj_database_url.config(default='sqlite:///db.sqlite3')
     }
 
     for (key, value) in six.iteritems(os.environ):
