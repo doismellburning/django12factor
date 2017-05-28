@@ -149,3 +149,12 @@ class TestD12F(unittest.TestCase):
                 "Loaded %d databases instead of just 1 (default) - got %s "
                 "from environment %s" % (len(dbs), dbs.keys(), e)
             )
+
+    def test_use_x_forwarded_proto(self):
+        with debugenv(TRUST_X_FORWARDED_PROTO="on"):
+            settings = d12f()
+            self.assertEquals(('HTTP_X_FORWARDED_PROTO', 'https'), settings['SECURE_PROXY_SSL_HEADER'])
+
+        with debugenv(TRUST_X_FORWARDED_PROTO="off"):
+            settings = d12f()
+            self.assertEquals(None, settings['SECURE_PROXY_SSL_HEADER'])
