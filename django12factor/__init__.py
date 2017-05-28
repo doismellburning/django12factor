@@ -125,7 +125,7 @@ safety reasons""")
 
     settings.update(dj_email_url.config(default='dummy://'))
 
-    settings['ALLOWED_HOSTS'] = os.getenv('ALLOWED_HOSTS', '').split(',')
+    settings['ALLOWED_HOSTS'] = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 
     # For keys to different apis, etc.
     if custom_settings is None:
