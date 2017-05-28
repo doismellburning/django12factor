@@ -118,6 +118,8 @@ def factorise(custom_settings=None):
         sys.exit("""DEBUG is False but no SECRET_KEY is set in the environment -
 either it has been hardcoded (bad) or not set at all (bad) - exit()ing for
 safety reasons""")
+    else:
+        settings['SECRET_KEY'] = 'debugkey'
 
     settings['CACHES'] = {
         'default': django_cache_url.config(default='locmem://')
