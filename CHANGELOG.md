@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Dropped Python 3.2 support
+* Added TRUST_X_FORWARDED_PROTO variable
 
 ## 1.3
 
