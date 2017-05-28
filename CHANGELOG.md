@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Dropped Python 3.2 support
+* Use sqlite:///db.sqlite3 as the default DATABASE_URL
 
 ## 1.3
 
