@@ -42,4 +42,5 @@ https://django12factor.readthedocs.org/en/latest/
 Credits
 -------
 
-Originally written by Kristian Glass / @doismellburning, now maintained by the wonderful Jonas Maurus / @jdelic
+Originally written by Kristian Glass / @doismellburning, now maintained by the
+wonderful Jonas Maurus / @jdelic
