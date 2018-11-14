@@ -37,3 +37,20 @@ Documentation
 -------------
 
 https://django12factor.readthedocs.org/en/latest/
+
+Licensing
+---------
+
+django12factor is licensed under the terms of the MIT License (see
+`License <LICENSE>`__).
+
+django12factor includes copies of Python's ``captured_output``,
+``captured_stdout`` and ``captured_stderr`` context managers, which are
+licensed under the terms of the
+`PSF LICENSE AGREEMENT FOR PYTHON <https://docs.python.org/3/license.html>`__.
+
+Credits
+-------
+
+Originally written by Kristian Glass / @doismellburning, now maintained by the
+wonderful Jonas Maurus / @jdelic
