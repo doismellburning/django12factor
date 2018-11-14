@@ -21,6 +21,8 @@ setup(
     # metadata for upload to PyPI
     author='Kristian Glass',
     author_email='django12factor@doismellburning.co.uk',
+    maintainer='Jonas Maurus',
+    maintainer_email='jonas-django12factor@maurus.net',
     url='https://github.com/doismellburning/django12factor',
     description='django12factor: Bringing 12factor to Django',
     long_description=long_description,
