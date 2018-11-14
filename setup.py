@@ -7,7 +7,7 @@ HERE = os.path.dirname(__file__)
 
 try:
     long_description = open(os.path.join(HERE, 'README.rst')).read()
-except Exception as e:
+except Exception:
     long_description = None
 
 
