@@ -1,6 +1,6 @@
-coverage==4.3.4
-git+https://github.com/doismellburning/doc8.git@feature/display-line-lengths
-flake8==3.3.0
+doc8==0.7.0
+coverage==4.5.2
+flake8==3.6.0
 nose==1.3.7
 pep257==0.7.0
 pygments==2.2.0
