@@ -21,6 +21,7 @@ _FALSE_STRINGS = [
     "no",
     "false",
     "off",
+    "0",
 ]
 
 
