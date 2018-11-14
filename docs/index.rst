@@ -79,7 +79,8 @@ If you say so...
 .. code-block:: python
 
     import django12factor
-    globals().update(django12factor.factorise())
+    d12f = django12factor.factorise()
+    globals().update(d12f)
 
 Utilities
 ---------
