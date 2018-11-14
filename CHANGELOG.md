@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Dropped Python 3.2 support
+* Treat '0' as false in boolean settings.
 
 ## 1.3
 
