@@ -27,7 +27,7 @@ jobs:
         pip install -r requirements-test.txt -e .
     - name: Run Tests
       run: |
-        coverage run --source=django12factor -m nose.core -w "${{ github.workspace }}/tests"
+        coverage run --source=django12factor -m nose.core -w "$CWD/tests"
         coverage report -m
         coverage lcov
     - name: Run Coveralls
