@@ -29,7 +29,8 @@ jobs:
       run: |
         pwd
         ls -al
-        coverage run --source=django12factor -m nose.core -w "${{ github.workspace }}"
+        ls -al tests
+        coverage run --source=django12factor -m nose.core -w "${{ github.workspace }}/tests"
         coverage report -m
         coverage lcov
     - name: Run Coveralls
