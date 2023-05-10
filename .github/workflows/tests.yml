@@ -27,6 +27,7 @@ jobs:
         pip install -r requirements-test.txt -e .
     - name: Run Tests
       run: |
+        pwd
         ls -al
         coverage run --source=django12factor -m nose.core -w "${{ github.workspace }}"
         coverage report -m
