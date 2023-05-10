@@ -1,0 +1,46 @@
+name: Tests
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: ["3.11"]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip wheel
+        pip install -r requirements-test.txt -e .
+    - name: Run Tests
+      run: |
+        coverage run nosetests
+        coverage report -m
+        coverage lcov
+    - name: Run Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: coverage.lcov
+    - name: Run Flake8
+      run:
+        flake8 --max-line-length=120 django12factor tests setup.py
+    - name: Run pep257
+      run:
+        pep257 --ignore D200,D202,D203 django12factor
+    - name: Run mypy
+      run:
+        mypy --ignore-missing-imports --follow-imports=skip --disallow-untyped-calls --disallow-untyped-defs -p django12factor
