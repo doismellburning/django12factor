@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-__version__ = '1.3'
+__version__ = '1.4'
 
 HERE = os.path.dirname(__file__)
 
